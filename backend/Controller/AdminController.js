@@ -22,6 +22,7 @@ const adminLogin = async (req,res) =>{
           if(emailExist.is_admin === 1){
             const passCheck = await bcrypt.compare(password,emailExist.password)
             if(passCheck){
+              
               const admintoken = jwt.sign({adminId:emailExist._id},process.env.SECRET_KEY_ADMIN,{expiresIn:'1h'})
              
               res.header('admintoken', admintoken);
@@ -89,7 +90,7 @@ const addUser = async (req, res) => {
             is_admin: 0
         })
         const userData = await user.save()
-        const token = jwt.sign({userId: userData._id},"process.env.SECRET_KEY_USER",{expiresIn: "1h"})
+        // const token = jwt.sign({userId: userData._id},"process.env.SECRET_KEY_USER",{expiresIn: "1h"})
         res.json({ userData, alert: "Registration", status:true})
     }
 }catch(error){

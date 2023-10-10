@@ -31,22 +31,21 @@ const AddUserList = () => {
       } else if (value.password.trim() === '') {
         toast('Please enter your password');
       } else {
-        console.log(value,"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         const response = await AddUserDetails(value);
-
+        
         if (response.data.status) {
-          const { _id, name, mobile, email, image, is_admin } = response.data.userData;
-          localStorage.setItem('token', response.data.token);
-          dispatch(
-            setUserDetails({
-              id: _id,
-              name: name,
-              email: email,
-              mobile: mobile,
-              image: image,
-              is_admin: is_admin,
-            })
-          );
+          // const { _id, name, mobile, email, image, is_admin } = response.data.userData;
+          // localStorage.setItem('token', response.data.token);
+          // dispatch(
+          //   setUserDetails({
+          //     id: _id,
+          //     name: name,
+          //     email: email,
+          //     mobile: mobile,
+          //     image: image,
+          //     is_admin: is_admin,
+          //   })
+          // );
           navigate('/admin/dashboard');
         } else {
           toast(response.data.alert);
